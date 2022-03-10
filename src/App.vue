@@ -1,17 +1,62 @@
 <template>
   <div class="container">
     <Header title="Task Tracker" />
+    <!-- Now at top level where data is present we need to create the method deleteTask below -->
+    <Tasks v-on:delete-task="deleteTask"  :tasks="tasks" />
   </div>  
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import Tasks from './components/Tasks.vue'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Tasks
   },
+  data () {
+    return {
+      tasks: []
+    }
+  },
+  methods: {
+    deleteTask(id, reminder){
+      console.log('task', id, reminder);
+      if(reminder == false){
+        if(confirm('Are you sure?')){
+          this.tasks = this.tasks.filter((task) => task.id !== id)
+        }
+      }
+      else
+        if(confirm('FYI, You still have a reminder set')){
+          this.tasks = this.tasks.filter((task) => task.id !== id)
+        }
+    }
+  },
+  created() {
+    this.tasks = [
+      {
+        id:1,
+        text: 'Doc Appt',
+        day: 'March 1st at 2:30pm',
+        reminder: true,
+      },
+      {
+        id:2,
+        text: 'Hair Appt',
+        day: 'March 3st at 2:30pm',
+        reminder: false,
+      },
+      {
+        id:3,
+        text: 'Work Appt',
+        day: 'March 10st at 2:30pm',
+        reminder: true,
+      },
+    ]
+  }
 }
 </script>
 
@@ -21,7 +66,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #2b3f2f;
   margin-top: 60px;
 }
 
@@ -30,9 +75,9 @@ export default {
   margin: 30px auto;
   overflow:auto;
   min-height: 300px;
-  border: 1px solid #2c3e50;
-  padding: 30px;
+  border: 1px solid #2b3f2f;
   border-radius: 5px;
+  padding-bottom: 1rem;
 }
 
 .btn {

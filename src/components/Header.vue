@@ -1,9 +1,9 @@
 <template>
   <header>  
     <h1>{{ title }}</h1>
-    <Button text = "Add Task" color = "green" />
-    <Button text = "Add Clothes" color = "blue" />
-    <Button text = "Add Task" color = "orange" />
+    <Button text = "Add Task" color = "#268571" />
+    <Button text = "Update Task" color = "#fcb419" />
+    <Button text = "Delete Task" color = "#bb3318" />
   </header>
 </template>
 
@@ -29,5 +29,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    background-color: #efcf8d;
   }
 </style>

@@ -13,6 +13,8 @@
     methods: {
       onClick() {
         console.log('click')
+        // Sending up the click event
+        this.$emit('btn-click')
       }
     }
   } 

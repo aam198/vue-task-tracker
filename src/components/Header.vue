@@ -1,7 +1,8 @@
 <template>
   <header>  
     <h1>{{ title }}</h1>
-    <Button text = "Add Task" color = "#268571" />
+    <!-- if showAddTask is True (or open) set the text to Close, if not, set text to Add Task -->
+    <Button @btn-click="$emit('show-add-task')" :text = "showAddTask ? 'Close' : 'Add Task'" :color = "showAddTask ? '#bb3318' : '#268571' " />
     <Button text = "Update Task" color = "#fcb419" />
     <Button text = "Delete Task" color = "#bb3318" />
   </header>
@@ -14,6 +15,7 @@ export default {
   name: 'Header',
   props: {
     title: String,
+    showAddTask:Boolean
   },
   components: {
     Button

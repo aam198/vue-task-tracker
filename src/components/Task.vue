@@ -1,5 +1,6 @@
 <template>
-  <div :class= "[task.reminder ? 'reminder': '', 'task']">
+<!-- Adding in double-click to Toggle the Reminder, need to do it to the entire div -->
+  <div @dblclick="togReminder(task.id)" :class= "[task.reminder ? 'reminder': '', 'task']">
     <h3>{{ task.text }} 
        <!-- onDelete needs to pass in task.id to individualize which task will be deleted -->
       <i @click="onDelete(task.id, task.reminder)" class="fas fa-times"></i>
@@ -16,6 +17,9 @@
       task:Object
     },
     methods: {
+      togReminder(id){
+        this.$emit('toggle-reminder', id)
+      },
       onDelete(id, reminder){
         console.log(id, reminder)
         // Pushing to the next level which is Tasks.vue

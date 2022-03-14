@@ -31,8 +31,20 @@ export default {
   },
   methods: {
     // Passing in the new task from AddTask and adding it to the array of tasks []
-     addTask(task){
-      this.tasks = [...this.tasks, task]
+     async addTask(task){
+      //  Make request and POST to db.json - tasks
+      const response = await fetch('api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-type' : 'application/json'
+        },
+        body: JSON.stringify(task)
+      })
+      // After sending we get the response of the task back
+      const data = await response.json() 
+      // Before: this.tasks = [...this.tasks, task]
+      // After: now that we added json-server we place data after ...this.tasks so this.tasks gets update with both original and new task (data)
+      this.tasks = [...this.tasks, data]
     },
 
     deleteTask(id, reminder){
@@ -47,6 +59,7 @@ export default {
           this.tasks = this.tasks.filter((task) => task.id !== id)
         }
     },
+
     toggleReminder(id){
       // Check to see if we get id printed to console when we double-click on entry
       console.log(id)
@@ -54,32 +67,30 @@ export default {
       this.tasks = this.tasks.map((task) => 
         task.id === id ? {...task, reminder: !task.reminder} : task)   
     },
+
     toggleAddTask() {
       // Setting to the opposite of what it is set to so it toggles. 
       this.showAddTask = !this.showAddTask
+    },
+
+    async fetchTasks() {
+      const response = await fetch('api/tasks')
+      // Before:  const response = await fetch('http://localhost:5000/tasks') but we added a proxy so we are able to use 
+      const data = await response.json()
+      console.log(data)
+      return data;
+    },
+    // To fetch a single task
+    async fetchTask(id) {
+      const response = await fetch(`api/tasks/${id}`)
+
+      const data = await response.json()
+      console.log(data)
+      return data;
     }
   },
-  created() {
-    this.tasks = [
-      {
-        id:1,
-        text: 'Doc Appt',
-        day: 'March 1st at 2:30pm',
-        reminder: true,
-      },
-      {
-        id:2,
-        text: 'Hair Appt',
-        day: 'March 3st at 2:30pm',
-        reminder: false,
-      },
-      {
-        id:3,
-        text: 'Work Appt',
-        day: 'March 10st at 2:30pm',
-        reminder: true,
-      },
-    ]
+  async created() {
+    this.tasks = await this.fetchTasks()
   }
 }
 </script>

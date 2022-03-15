@@ -42,7 +42,8 @@
         }
         // If field is not blank then Create a new task
         const newTask = {
-          id: Math.floor(Math.random() *1000),
+          // Don't need id: below because JSON-serve adds an UUID to each task added.
+          // id: Math.floor(Math.random() *1000),
           text: this.text,
           day: this.day,
           reminder: this.reminder

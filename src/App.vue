@@ -8,11 +8,13 @@
     </div>
     <!-- Now at top level where data is present we need to create the method deleteTask below -->
     <Tasks @toggle-reminder="toggleReminder" v-on:delete-task="deleteTask"  :tasks="tasks" />
+    <Footer />
   </div>  
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 import Tasks from './components/Tasks.vue'
 import AddTask from './components/AddTask.vue'
 
@@ -21,7 +23,8 @@ export default {
   components: {
     Header,
     Tasks,
-    AddTask
+    AddTask,
+    Footer
   },
   data () {
     return {

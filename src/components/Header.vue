@@ -2,9 +2,9 @@
   <header>  
     <h1>{{ title }}</h1>
     <!-- if showAddTask is True (or open) set the text to Close, if not, set text to Add Task -->
-    <Button @btn-click="$emit('show-add-task')" :text = "showAddTask ? 'Close' : 'Add Task'" :color = "showAddTask ? '#bb3318' : '#268571' " />
-    <Button text = "Update Task" color = "#fcb419" />
-    <Button text = "Delete Task" color = "#bb3318" />
+    <Button v-show="homePage" @btn-click="$emit('show-add-task')" :text = "showAddTask ? 'Close' : 'Add Task'" :color = "showAddTask ? '#bb3318' : '#268571' " />
+    <!-- Add Delete All Tasks? -->
+    <!-- <Button text = "Delete Task" color = "#bb3318" /> -->
   </header>
 </template>
 
@@ -19,6 +19,17 @@ export default {
   },
   components: {
     Button
+  },
+  computed: {
+    // Function for the button to know that when we are not on the home page or path '/' then we return false
+    homePage() {
+      if(this.$route.path === '/'){
+        return true
+      }
+      else {
+        return false
+      }
+    }
   }
 }
 
@@ -32,5 +43,6 @@ export default {
     align-items: center;
     margin-bottom: 20px;
     background-color: #efcf8d;
+    padding: 0px 1rem;
   }
 </style>

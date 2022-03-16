@@ -9,7 +9,7 @@
     {
       "text": "Test 3 ",
       "day": "March 3, 2022",
-      "reminder": true,
+      "reminder": false,
       "id": 849
     }
   ]

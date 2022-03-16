@@ -42,7 +42,13 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    background-color: #efcf8d;
-    padding: 0px 1rem;
+    background-color: #32363A;
+    padding: 0px 1.2rem;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    height: 15vh;
+  }
+  header h1{
+    color: #ffffff;
   }
 </style>

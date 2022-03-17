@@ -3,7 +3,7 @@
     {
       "text": "Order Pizza",
       "day": "March 24th at 3:00 pm",
-      "reminder": false,
+      "reminder": true,
       "id": 848
     },
     {
